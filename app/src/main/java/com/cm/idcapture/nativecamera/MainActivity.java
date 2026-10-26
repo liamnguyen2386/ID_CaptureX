@@ -43,7 +43,14 @@ public class MainActivity extends ComponentActivity {
   LinearLayout root=column();root.setGravity(Gravity.CENTER);root.setPadding(dp(26),dp(20),dp(26),dp(20));root.setBackgroundColor(Color.WHITE);
   ImageView logo=new ImageView(this);logo.setImageResource(R.drawable.logo);logo.setAdjustViewBounds(true);logo.setScaleType(ImageView.ScaleType.FIT_CENTER);root.addView(logo,new LinearLayout.LayoutParams(dp(240),dp(155)));
   TextView title=text("Chụp ảnh Căn cước",25,Color.rgb(15,23,42));LinearLayout.LayoutParams tp=new LinearLayout.LayoutParams(-1,dp(88));root.addView(title,tp);
-  Button begin=new Button(this);begin.setText("Bắt đầu chụp ảnh");begin.setTextAllCaps(false);begin.setTextColor(Color.WHITE);begin.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.rgb(22,118,239)));
+  Button begin = new Button(this);
+begin.setText("Bắt đầu chụp ảnh");
+begin.setTextColor(Color.WHITE);
+begin.setBackgroundTintList(
+    android.content.res.ColorStateList.valueOf(
+        Color.rgb(22, 118, 239)
+    )
+);
   root.addView(begin,new LinearLayout.LayoutParams(-1,dp(64)));begin.setOnClickListener(v->startFlow());setContentView(root);
  }
  private void startFlow(){if(getSharedPreferences(PREF,0).getString("url","").isEmpty()){showSetup();return;}if(checkSelfPermission(Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){requestPermissions(new String[]{Manifest.permission.CAMERA},10);return;}showCamera();}
